@@ -1,0 +1,42 @@
+<link rel="stylesheet" type="text/css" href="stylSzachownicy1.css"/>
+<link rel="stylesheet" type="text/css" href="aktualneGry.css"/>
+
+<div ng-include="'notifications.html'"></div>
+
+<div ng-app="myApp" ng-controller="aktualneGryCtrl">
+<h1>Twoje aktualnie rozgrywane gry:</h1>
+<div data-ng-repeat="(key, value)  in gry">
+
+
+
+  <div class="col-xs-6 col-md-4">
+    <div class="panel">
+		<div class = "animate-show" ng-click="gry[key].zwiniete = !gry[key].zwiniete">
+			Gra z przeciwnikiem komputerowym (1200 ELO)
+		</div>
+	
+	<div class="dropDownMenu" ng-show="gry[key].zwiniete">
+		<a class = "szachownica" ng-href="#/szachownica?id={{gry[key].id}}">
+		
+		<div class="wierszSzachownicy" data-ng-repeat="wiersz in gry[key].kolejnoscWierszy">
+			<div data-ng-repeat="kolumna in [1,2,3,4,5,6,7,8]">
+				<div ng-style="kolorPola(wiersz, kolumna)" ng-click="aktywujPole(wiersz, kolumna)" class="poleSzachownicy {{pobierzPole(wiersz, kolumna, key)}}"></div>
+			</div>
+		</div>
+
+		</a>
+				
+    </div>
+    </div>
+  </div>
+  
+
+
+
+
+</div>
+
+
+
+
+</div>

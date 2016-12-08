@@ -1,0 +1,69 @@
+<link rel="stylesheet" type="text/css" href="kontrolki.css"/>
+<link rel="stylesheet" type="text/css" href="stylSzachownicy1.css"/>
+
+<div ng-include="'notifications.html'"></div>
+
+
+<div  ng-controller="personalizacjaCtrl" class = "trescPodstrony">
+	
+		<form ng-submit="zmienKolor()" >
+			<fieldset class="form-group">
+			<legend>        Wybierz kolor</legend>
+				
+			<div class="form-check">
+				<label class="form-check-label">
+				<input style="float:left;" type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult1" value="l" checked>
+				
+					<div style="float:left;"class = "szachownicaPodglad" >
+						<div class="wierszSzachownicy">
+								<div style="background-color: #cc3333;" class="poleSzachownicyPodglad"></div>
+								<div style="background-color: #333333;" class="poleSzachownicyPodglad"></div>
+						</div>
+						<div class="wierszSzachownicy">
+								<div style="background-color: #333333;" class="poleSzachownicyPodglad"></div>
+								<div style="background-color: #cc3333;" class="poleSzachownicyPodglad"></div>
+						</div>
+					</div>
+					
+				</label>
+				
+				<label class="form-check-label">
+				<input style="float:left;" type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult1" value="l" checked>
+				
+					<div style="float:left;"class = "szachownicaPodglad" >
+						<div class="wierszSzachownicy">
+								<div style="background-color: #7777cc;" class="poleSzachownicyPodglad"></div>
+								<div style="background-color: #555555;" class="poleSzachownicyPodglad"></div>
+						</div>
+						<div class="wierszSzachownicy">
+								<div style="background-color: #555555;" class="poleSzachownicyPodglad"></div>
+								<div style="background-color: #7777cc;" class="poleSzachownicyPodglad"></div>
+						</div>
+					</div>
+					
+				</label>
+				
+				<label class="form-check-label">
+				<input style="float:left;" type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult1" value="l" checked>
+				
+					<div style="float:left;"class = "szachownicaPodglad" >
+						<div class="wierszSzachownicy">
+								<div style="background-color: #9999dd;" class="poleSzachownicyPodglad"></div>
+								<div style="background-color: #5555aa;" class="poleSzachownicyPodglad"></div>
+						</div>
+						<div class="wierszSzachownicy">
+								<div style="background-color: #5555aa;" class="poleSzachownicyPodglad"></div>
+								<div style="background-color: #9999dd;" class="poleSzachownicyPodglad"></div>
+						</div>
+					</div>
+					
+				</label>
+			</div>
+
+			</fieldset>
+			
+			
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+
+</div>

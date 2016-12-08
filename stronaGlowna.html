@@ -1,0 +1,168 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="mainTheme.css" />
+	<link rel="stylesheet" type="text/css" href="kontrolki.css" />
+</head>
+<body ng-app="myApp">
+
+    <div class="kontenerLogowania">
+        Jesteœ zalogowany jako Mateusz 
+		<div class="rozwjianeMenuLogowania">
+			<a href="#/profil"><li>Profil</li></a>
+			<a href="#/logout"><li>Wyloguj</li></a>
+		</div>
+	</div>
+    <div class="glownyKontener">
+        <div class="menuNawigacji">
+
+		<ul id="trans-nav">
+			<li><a href="#/home">Home</a></li>
+			<li><a href="#/kontakt">Kontakt</a></li>
+			<li><a href="#/szachownica">Szachownica</a></li>
+			<li><a href="#/AktualneGry">Rozgrywka</a>
+				<ul>
+					<li><a href="#/AktualneGry">Aktualne gry</a></li>
+					<li><a href="#/NowaGra">Nowa gra</a></li>
+				</ul>
+			</li>
+			<li><a href="#/personalizacja">Personalizacja</a></li>
+			<li><a href="#/login">Login</a></li>
+		</ul>
+
+				
+            </div>
+            
+			
+			<ul id="mainmenu">
+
+            <div class="zawartosc" ng-view>
+
+			</div>
+        </div>
+</body>
+
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
+
+<script>
+
+    var app = angular.module("myApp", ["ngRoute", 'ngCookies']);
+		
+	app.service("notificationsService", function ($http, $cookies, $location) {
+		var error;
+		var notofication;
+		var success;
+		
+		this.setSuccess = function ($data){
+				this.clear();
+				this.success = $data;
+		}
+		this.setError = function ($data){
+				this.clear();
+				this.error = $data;
+		}
+		this.setNotofication = function ($data){
+				this.clear();
+				this.notofication = $data;
+		}
+
+		this.getAll = function (){
+				return {error: this.error, notofication: this.notofication, success: this.success};
+				this.clear();
+		}
+
+		
+		this.clear = function (){
+			error = null;
+			notofication = null;
+			success = null;
+		}
+	});
+	
+	app.service("filesService", function ($http, $location, notificationsService) {
+		var serverUrl = "http://localhost:58949/Chess";
+		this.wczytajDane = function (url, successFunction ) {
+			$http.get(serverUrl + url, {
+				params: { address: "Zlin, Czech Republic", sensor: false },
+				withCredentials: true
+			}).then( function success(response){
+					if(response.data.redirect!= null)
+					{
+						notificationsService.setError(response.data.error);
+						$location.path(response.data.redirect);
+					}
+					successFunction(response);
+			});
+			return {isError:0};
+		}
+		
+		this.zapiszFormularz = function (url, successFunction, parametry){
+				$http.post(serverUrl + url, parametry)			.then( function success(response){
+					if(response.data.redirect!= null)
+					{	
+						notificationsService.setError(response.data.error);
+						$location.path(response.data.redirect);
+					}
+					successFunction(response);
+			});
+		};
+	});
+	
+
+	
+    app.config(function ($routeProvider) {
+
+	    $routeProvider
+        .when("/kontakt", {
+            templateUrl: "kontakt.html"
+        })
+        .when("/home", {
+            templateUrl: "home.html"
+        })
+        .when("/", {
+			controller: 'mainController'
+        })
+		.when("/AktualneGry", {
+            templateUrl: "aktualneGry.html",
+			controller: 'aktualneGryCtrl'
+        })
+		.when("/login", {
+            templateUrl: "login.html",
+			controller: 'loginCtrl'
+        })
+		.when("/NowaGra", {
+            templateUrl: "nowaGra.html",
+			controller: 'nowaGraCtrl'
+        })
+        .when("/szachownica", {
+            templateUrl: "szachownica.html",
+            controller: 'szachownicaCtrl'
+        })
+		.when("/personalizacja", {
+            templateUrl: "personalizacja.html",
+            controller: 'personalizacjaCtrl'
+        })
+        .otherwise({ redirectTo: '/' });
+    });
+
+	app.controller('mainController', function ($scope, $cookies, notificationsService) {
+	
+		$scope.notifications = notificationsService.getAll();
+		
+    });
+
+
+</script>
+<script src="szachownicaCtrl.js" language=javascript type="text/javascript"></script>
+<script src="aktualneGry.js" language=javascript type="text/javascript"></script>
+<script src="nowaGra.js" language=javascript type="text/javascript"></script>
+<script src="login.js" language=javascript type="text/javascript"></script>
+<script src="personalizacjaCtrl.js" language=javascript type="text/javascript"></script>
+
+
+

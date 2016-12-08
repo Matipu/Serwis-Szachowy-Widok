@@ -1,0 +1,55 @@
+
+<link rel="stylesheet" type="text/css" href="stylSzachownicy1.css"/>
+<div ng-app="myApp" ng-controller="szachownicaCtrl">
+
+
+		
+
+    <div class="col-lg-6">
+		<div style="margin-top:20px;"class = "pasekPrzewagi" >
+		
+			<span style="width: {{ przewagaBialychPx }}px" class = "przewagaBialych" >
+			</span>
+			
+			<span style="width: {{ przewagaCzarnychPx }}px" class = "przewagaCzarnych" >
+			</span>
+			
+			<span class = "napisPrzewagi">
+			{{ przewagaBialych }}:{{ przewagaCzarnych }}
+			</span>
+			
+		</div>
+		<div style="margin-top:20px;"class = "szachownica" >
+		
+		<div class="wierszSzachownicy" data-ng-repeat="wiersz in gry[0].kolejnoscWierszy">
+			<div data-ng-repeat="kolumna in [0, 1,2,3,4,5,6,7]">
+				<div ng-style="kolorPola(wiersz, kolumna)" ng-click="aktywujPole(wiersz, kolumna)" class="poleSzachownicy {{pobierzPole(wiersz, kolumna, 0)}}"></div>
+			</div>
+		</div>
+
+		</div>
+	</div>
+
+	    <div style="margin-top:20px; max-height:700px; overflow: auto;" class="col-lg-6">
+		<div>
+			<h3 style="display:inline;">Przeciwnik: SI</h3>
+			<span class="btn btn-danger" style="float:right;">Poddaj się!</span>
+		</div>
+			<div style="margin-top:40px;" class="list-group">
+				<a class="list-group-item list-group-item-info">Historia</a>
+				
+				<div data-ng-repeat="kolumna in historia">
+						<a class="list-group-item">{{getHistory($index)}}</a>
+				</div>
+
+				
+			</div>
+		</div>
+
+</div>
+
+
+
+<script>
+    var app = angular.module("myApp", []);
+</script> 

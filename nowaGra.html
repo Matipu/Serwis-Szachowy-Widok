@@ -1,0 +1,87 @@
+<link rel="stylesheet" type="text/css" href="kontrolki.css"/>
+
+<div ng-app="myApp" ng-controller="nowaGraCtrl" class = "trescPodstrony">
+	
+	
+
+
+	<div ng-show="czyWyborPrzeciwnika">
+		<h3>
+			Chcesz zagrać z komputerem czy wyszukać realnego przeciwnika?
+		</h3>
+		<span class = "przycisk" ng-click="wybierzPrzeciwnika(true)">
+			Z komputerem
+		</span>
+		
+		<span class = "przycisk" ng-click="wybierzPrzeciwnika(false)">
+			Z prawdziwym przeciwnikiem
+		</span>
+	</div>
+	
+	
+	<div ng-show="czyWybranoKomputer == true">
+	
+<form ng-submit="dodaj()" >
+  <fieldset class="form-group">
+    <legend>        Wybierz poziom trudności</legend>
+	
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult1" value="l" checked>
+        Łatwy
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult2" value="m">
+        Średni
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult3" value="h">
+        Trudny
+      </label>
+    </div>
+  </fieldset>
+  
+  
+    <fieldset class="form-group">
+    <legend>Jakim kolorem chciałbyś zaczynać?</legend>
+	
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="color" ng-model="color" id="color1" value="w" checked>
+        Biały
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="color" ng-model="color" id="color2" value="b">
+        Czarny
+      </label>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+	</div>
+	
+	<div ng-show="czyWybranoKomputer == false">
+		<h3>
+			Tu powinno nastąpić wyszukiwanie przeciwnika.
+		</h3>
+	</div>
+	
+	
+	
+	
+	
+
+
+	
+
+</div>

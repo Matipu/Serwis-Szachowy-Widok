@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="kontrolki.css"/>
+
+<div ng-include="'notifications.html'"></div>
+
+
+<div  ng-controller="loginCtrl" class = "trescPodstrony">
+	
+
+	
+	<div class="col-xs-6">
+	<label for="ex1">E-mail:</label>
+	<input class="form-control" id="ex1" type="text">
+	</div>
+	<div class="col-xs-6">
+	<label for="ex2">Hasło:</label>
+	<input class="form-control" id="ex2" type="text">
+	</div>
+	
+	<div class="col-xs-12">
+		<div class="przycisk" ng-click="zalogujSie()">
+			Zaloguj się
+		</div>
+	</div>
+</div>

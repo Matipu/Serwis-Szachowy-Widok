@@ -1,0 +1,9 @@
+ <div  ng-controller="mainController" >
+		<div class="alert alert-danger" ng-show="notifications.error!=null">
+			<strong>Błąd!</strong> {{notifications.error}}
+		</div>
+
+		<div class="alert alert-success" ng-show="notifications.success!=null">
+			<strong>Sukces!</strong> {{notifications.success}}
+		</div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "szachownica": [
+    [ "czarnaWieza", "czarnyKon", "czarnyGoniec", "czarnaKrolowa", "czarnyKrol", "czarnyGoniec", "czarnyKon", "czarnaWieza" ],
+    [ "czarnyPionek", "czarnyPionek", "czarnyPionek", "czarnyPionek", "czarnyPionek", "czarnyPionek", "czarnyPionek", "czarnyPionek" ],
+    [ "", "", "", "", "", "", "", "" ],
+    [ "", "", "", "", "", "", "", "" ],
+    [ "", "", "", "", "", "", "", "" ],
+    [ "", "", "", "", "", "", "", "" ],
+    [ "bialyPionek", "bialyPionek", "bialyPionek", "bialyPionek", "bialyPionek", "bialyPionek", "bialyPionek", "bialyPionek" ],
+    [ "bialaWieza", "bialyKon", "bialyGoniec", "bialaKrolowa", "bialyKrol", "bialyGoniec", "bialyKon", "bialaWieza" ]
+  ]
+}
