@@ -1,8 +1,11 @@
-﻿app.controller('szachownicaCtrl', function ($scope, $http, $location, filesService) {
+﻿app.controller('szachownicaCtrl', function ($scope, $http, $location, filesService, $timeout) {
         $scope.pobierzPole = function (wiersz, kolumna, id) {
             return $scope.gry[id].figures[wiersz][kolumna];
         };
+		
 
+		var liczbaRuchow = 0;
+				
         $scope.kolorPola = function (wiersz, kolumna) {
             for (i = 0; i < $scope.mozliweRuchy.length; i++) {
                 if ($scope.mozliweRuchy[i].line == wiersz && $scope.mozliweRuchy[i].collumn == kolumna) {
@@ -39,6 +42,8 @@
 							$scope.aktywnePole.kolumna = -1;
 							$scope.mozliweRuchy = {};
 							wczytajPrzewage();
+							liczbaRuchow = $scope.liczbaRuchow;
+							$timeout(czekajNaRuchPrzeciwnika, 1000);
 					});
 					return;
                 }
@@ -66,14 +71,24 @@
 
         };
 		
+
+		function czekajNaRuchPrzeciwnika() {
+			if(liczbaRuchow+2 != $scope.liczbaRuchow){
+				wczytajSzachownice();
+				$timeout(czekajNaRuchPrzeciwnika, 1000);
+			}
+		};
+
+		
 		function wczytajPrzewage() {
             filesService.wczytajDane("/advantage/?gameId="+$scope.id.toString()
 			, function (response) {
+
                 $scope.przewagaBialych = response.data.advantage.toFixed(2);
 				$scope.przewagaCzarnych = (1-($scope.przewagaBialych)).toFixed(2);
 				
-				$scope.przewagaBialychPx = $scope.przewagaBialych*600;
-				$scope.przewagaCzarnychPx = $scope.przewagaCzarnych*600;
+				$scope.przewagaBialychPx = $scope.przewagaBialych*400;
+				$scope.przewagaCzarnychPx = $scope.przewagaCzarnych*400;
             });
 
         };
@@ -90,9 +105,12 @@
 				if ($scope.gry[0].playerColor == "w")
 					$scope.gry[0].kolejnoscWierszy = [7, 6, 5, 4, 3, 2, 1, 0];
                  $scope.aktywnePole = Object;
+				 $scope.statusKoncowy = $scope.gry[0].finishStatus;
                  $scope.aktywnePole.wiersz = -1;
                  $scope.aktywnePole.kolumna = -1;
-				 $scope.historia = response.data.history;
+				 $scope.historia = response.data.history.reverse();
+				 $scope.liczbaRuchow = response.data.numberOfMovements;
+
 		})};
 
         function wczytajUstawienia() {
@@ -105,14 +123,25 @@
         };
 		
 		$scope.getHistory = function(index) {
-			return (index+1).toString() + '.   ' + String.fromCharCode(97 + $scope.historia[index].init.collumn) + $scope.historia[index].init.line.toString()
-			+' -> '+ String.fromCharCode(97 + $scope.historia[index].target.collumn) + $scope.historia[index].target.line.toString();
+			return (index+1).toString() + '.   ' + String.fromCharCode(97 + $scope.historia[index].init.collumn) + (8-$scope.historia[index].init.line).toString()
+			+' -> '+ String.fromCharCode(97 + $scope.historia[index].target.collumn) + (8-$scope.historia[index].target.line).toString();
 
         };
 
-		$scope.id = $location.search().id;
+		$scope.indexChar = function (index) {
+			return String.fromCharCode(65 + index);
+		};
 
+		$scope.cofnjiRuch = function (wiersz, kolumna, id) {
+            filesService.wczytajDane("/backMove?gameId="+$scope.id.toString()
+				, function (response) {
+					wczytajSzachownice();
+            });
+        };
 		
+		$scope.id = $location.search().id;
+		$scope.przewagaBialych = 0.5;
+		$scope.przewagaCzarnych = 0.5;
         $scope.mozliweRuchy = [];
         wczytajPrzewage();
         wczytajSzachownice();

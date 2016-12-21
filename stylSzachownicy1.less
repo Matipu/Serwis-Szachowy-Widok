@@ -1,19 +1,97 @@
 
+.pasekPrzewagi{
+	background-color: #aaaaaa;
+	height: 30px;
+	width:600px;
+	padding:5px;
+	.przewagaBialych{
+		background-color: #ffffff;
+		height: 20px;
+		width:210px;
+		float:left;
+	}
+	.przewagaCzarnych{
+		background-color: #000000;
+		height: 20px;
+		width:190px;
+		float:left;
+	}
+	.napisPrzewagi{
+		margin-left:10px;
+	}
+}
 
 #kwadrat{
-    width: 12.5%;
-    height: 12.5%;
+    width: 11.875%;
+    height: 11.875%;
     float: left;
+
 }
 .szachownica{
-background-color:#aaaaaa;
-height:700px;
-width:700px;
+		height:600px;
+		width:600px;
+		border: 1px solid black;
 }
-.poleSzachownicy{
-        #kwadrat
+.przyciemnienieSzachownicy{
+		height:600px;
+		width:600px;
+		background-color: #000000;
+		opacity:0.9;
+		position: absolute;
+		top: 0px;
+
+
+		text-align: center;
 }
 
+.napisPrzegranej{
+		position: absolute;
+		top: 45%;
+		left:35%;
+		text-align: center;
+		font-size:40px;
+}
+
+.napisRemisu{
+		position: absolute;
+		text-align: center;
+		top: 45%;
+		left:35%;
+		font-size:40px;
+}
+
+.napisWygranej{
+		position: absolute;
+		top: 45%;
+		left:35%;
+		text-align: center;		
+		font-size:40px;
+}
+
+
+.poleSzachownicy{
+        #kwadrat;
+		padding:6px;
+		padding-left:20px;
+		font-size :40px;
+}
+.poleSzachownicyIndeksoweLewe{
+		width: 5%;
+		height: 11.875%;
+		float: left;
+		padding-left:10px;
+		padding-top:17px;
+		font-size :25px;
+}
+.poleSzachownicyIndeksoweDolne{
+		width: 11.875%;
+		height: 5%;
+		float: left;
+		padding-left:30px;
+		font-size : 25px;
+		
+		
+}
 #kwadratPodglad{
     width: 50%;
     height: 50%;
@@ -23,12 +101,11 @@ width:700px;
         #kwadratPodglad
 }
 .szachownicaPodglad{
-height:125px;
-width:125px;
+		height:125px;
+		width:125px;
 }
 
 .wierszSzachownicy{
-
 		clear:both;
 }
 
@@ -102,24 +179,3 @@ width:125px;
 
 
 
-.pasekPrzewagi{
-	background-color: #aaaaaa;
-	height: 30px;
-	width:700px;
-	padding:5px;
-	.przewagaBialych{
-		background-color: #ffffff;
-		height: 20px;
-		width:210px;
-		float:left;
-	}
-	.przewagaCzarnych{
-		background-color: #000000;
-		height: 20px;
-		width:190px;
-		float:left;
-	}
-	.napisPrzewagi{
-		margin-left:10px;
-	}
-}

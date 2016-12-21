@@ -8,56 +8,23 @@
 	
 		<form ng-submit="zmienKolor()" >
 			<fieldset class="form-group">
-			<legend>        Wybierz kolor</legend>
-				
+			<legend>Wybierz kolor</legend>
 			<div class="form-check">
-				<label class="form-check-label">
-				<input style="float:left;" type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult1" value="l" checked>
-				
-					<div style="float:left;"class = "szachownicaPodglad" >
-						<div class="wierszSzachownicy">
-								<div style="background-color: #cc3333;" class="poleSzachownicyPodglad"></div>
-								<div style="background-color: #333333;" class="poleSzachownicyPodglad"></div>
+				<div ng-repeat="(i, color) in colors" >
+					<label style="float:left; margin:20px;" class="form-check-label" ng-click="zmienKolorId(i)">
+						<input style="float:left;" type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult1" value="{{i}}" checked>
+						<div style="float:left;"class = "szachownicaPodglad" >
+							<div class="wierszSzachownicy">
+									<div ng-style="{'background-color': '#' + color.color1}" class="poleSzachownicyPodglad"></div>
+									<div ng-style="{'background-color': '#' + color.color2}"  class="poleSzachownicyPodglad"></div>
+							</div>
+							<div class="wierszSzachownicy">
+									<div ng-style="{'background-color': '#' + color.color2}"  class="poleSzachownicyPodglad"></div>
+									<div ng-style="{'background-color': '#' + color.color1}" class="poleSzachownicyPodglad"></div>
+							</div>
 						</div>
-						<div class="wierszSzachownicy">
-								<div style="background-color: #333333;" class="poleSzachownicyPodglad"></div>
-								<div style="background-color: #cc3333;" class="poleSzachownicyPodglad"></div>
-						</div>
-					</div>
-					
-				</label>
-				
-				<label class="form-check-label">
-				<input style="float:left;" type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult1" value="l" checked>
-				
-					<div style="float:left;"class = "szachownicaPodglad" >
-						<div class="wierszSzachownicy">
-								<div style="background-color: #7777cc;" class="poleSzachownicyPodglad"></div>
-								<div style="background-color: #555555;" class="poleSzachownicyPodglad"></div>
-						</div>
-						<div class="wierszSzachownicy">
-								<div style="background-color: #555555;" class="poleSzachownicyPodglad"></div>
-								<div style="background-color: #7777cc;" class="poleSzachownicyPodglad"></div>
-						</div>
-					</div>
-					
-				</label>
-				
-				<label class="form-check-label">
-				<input style="float:left;" type="radio" class="form-check-input" name="difficult" ng-model="difficult" id="difficult1" value="l" checked>
-				
-					<div style="float:left;"class = "szachownicaPodglad" >
-						<div class="wierszSzachownicy">
-								<div style="background-color: #9999dd;" class="poleSzachownicyPodglad"></div>
-								<div style="background-color: #5555aa;" class="poleSzachownicyPodglad"></div>
-						</div>
-						<div class="wierszSzachownicy">
-								<div style="background-color: #5555aa;" class="poleSzachownicyPodglad"></div>
-								<div style="background-color: #9999dd;" class="poleSzachownicyPodglad"></div>
-						</div>
-					</div>
-					
-				</label>
+					</label>
+				</div>
 			</div>
 
 			</fieldset>
