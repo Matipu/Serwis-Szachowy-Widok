@@ -22,6 +22,7 @@
 				<ul>
 					<li><a href="#/AktualneGry">Aktualne gry</a></li>
 					<li><a href="#/NowaGra">Nowa gra</a></li>
+					<li><a href="#/HistoriaGier">Historia gier</a></li>
 				</ul>
 			</li>
 			<li><a href="#/personalizacja">Personalizacja</a></li>
@@ -129,6 +130,14 @@
             templateUrl: "aktualneGry.html",
 			controller: 'aktualneGryCtrl'
         })
+		.when("/historia", {
+            templateUrl: "historia.html",
+			controller: 'historiaCtrl'
+        })
+		.when("/HistoriaGier", {
+            templateUrl: "historiaGier.html",
+			controller: 'historiaGierCtrl'
+        })
 		.when("/login", {
             templateUrl: "login.html",
 			controller: 'loginCtrl'
@@ -161,6 +170,8 @@
 <script src="nowaGra.js" language=javascript type="text/javascript"></script>
 <script src="login.js" language=javascript type="text/javascript"></script>
 <script src="personalizacjaCtrl.js" language=javascript type="text/javascript"></script>
+<script src="historiaCtrl.js" language=javascript type="text/javascript"></script>
+<script src="historiaGierCtrl.js" language=javascript type="text/javascript"></script>
 
 
 

@@ -1,4 +1,4 @@
-﻿app.controller('szachownicaCtrl', function ($scope, $http, $location, filesService, $timeout) {
+﻿app.controller('historiaCtrl', function ($scope, $http, $location, filesService, $timeout) {
         $scope.pobierzPole = function (wiersz, kolumna, id) {
             return $scope.gry[id].figures[wiersz][kolumna];
         };
@@ -52,25 +52,11 @@
             if ($scope.gry[0].figures[wiersz][kolumna] != "") {
                 $scope.aktywnePole.wiersz = wiersz;
                 $scope.aktywnePole.kolumna = kolumna;
-                wczytajPlikZMozliwymiRuchami(wiersz, kolumna);
-
             } else {
                 $scope.aktywnePole.wiersz = -1;
                 $scope.aktywnePole.kolumna = -1;
             }
         };
-
-        function wczytajPlikZMozliwymiRuchami(wiersz, kolumna) {
-            filesService.wczytajDane("/PossibleMoves/?gameId="+$scope.id.toString()+
-			"&line="+wiersz.toString()+
-			"&collumn="+kolumna.toString()
-			, function (response) {
-                $scope.mozliweRuchy = response.data;
-
-            });
-
-        };
-		
 
 		function czekajNaRuchPrzeciwnika() {
 			if(liczbaRuchow+2 != $scope.liczbaRuchow){
@@ -110,7 +96,7 @@
                  $scope.aktywnePole.kolumna = -1;
 				 $scope.historia = response.data.history.reverse();
 				 $scope.liczbaRuchow = response.data.numberOfMovements;
-
+				 $scope.KtoryRuch = 0;
 		})};
 
         function wczytajUstawienia() {
@@ -132,19 +118,33 @@
 			return String.fromCharCode(65 + index);
 		};
 
-		$scope.cofnjiRuch = function () {
-            filesService.wczytajDane("/backMove?gameId="+$scope.id.toString()
-				, function (response) {
-					wczytajSzachownice();
-            });
+		$scope.nastepnyRuch = function () {
+			if($scope.KtoryRuch <= 0 ){
+				return;
+			}
+			$scope.KtoryRuch--;
+			iKolumna = $scope.historia[$scope.KtoryRuch].init.collumn;
+			iWiersz = $scope.historia[$scope.KtoryRuch].init.line;
+			tKolumna = $scope.historia[$scope.KtoryRuch].target.collumn;
+			tWiersz = $scope.historia[$scope.KtoryRuch].target.line;
+			$scope.gry[0].figures[tWiersz][tKolumna] = $scope.gry[0].figures[iWiersz][iKolumna];
+			$scope.gry[0].figures[iWiersz][iKolumna] = null;
+			
         };
-		$scope.poddajSie = function () {
-            filesService.wczytajDane("/surrender?gameId="+$scope.id.toString()
-				, function (response) {
-					wczytajSzachownice();
-            });
+		$scope.poprzedniRuch = function () {
+			if($scope.KtoryRuch >= $scope.historia.length ){
+				return;
+			}
+			iKolumna = $scope.historia[$scope.KtoryRuch].init.collumn;
+			iWiersz = $scope.historia[$scope.KtoryRuch].init.line;
+			tKolumna = $scope.historia[$scope.KtoryRuch].target.collumn;
+			tWiersz = $scope.historia[$scope.KtoryRuch].target.line;
+			$scope.gry[0].figures[iWiersz][iKolumna] = $scope.gry[0].figures[tWiersz][tKolumna];
+			$scope.gry[0].figures[tWiersz][tKolumna] = $scope.historia[$scope.KtoryRuch].compactFigure;
+			$scope.KtoryRuch++;
+
         };
-		
+		$scope.KtoryRuch = 0;
 		$scope.id = $location.search().id;
 		$scope.przewagaBialych = 0.5;
 		$scope.przewagaCzarnych = 0.5;

@@ -1,22 +1,10 @@
 
 <link rel="stylesheet" type="text/css" href="stylSzachownicy1.css"/>
-<div ng-app="myApp" ng-controller="szachownicaCtrl">
+<div ng-app="myApp" ng-controller="historiaCtrl">
 
 
     <div class="col-lg-6">
-		<div style="margin-top:20px;"class = "pasekPrzewagi" >
-		
-			<span style="width: {{ przewagaBialychPx }}px" class = "przewagaBialych" >
-			</span>
-			
-			<span style="width: {{ przewagaCzarnychPx }}px" class = "przewagaCzarnych" >
-			</span>
-
-			<span class = "napisPrzewagi">
-			{{ przewagaBialych }}:{{ przewagaCzarnych }}
-			</span>
-			
-		</div>
+		<h1>Historia rozgrywki</h1>
 		<div style="margin-top:40px;"class = "szachownica" >
 			<div  data-ng-repeat="wiersz in gry[0].kolejnoscWierszy">
 				<div class="wierszSzachownicy">
@@ -37,28 +25,27 @@
 			</div>
 			
 		</div>
-		<div style="margin-top:90px;" class ="przyciemnienieSzachownicy" ng-show="statusKoncowy!=null">
-		
-			<div class="napisPrzegranej" ng-show="statusKoncowy!=gry[0].playerColor && statusKoncowy !='d' ">
-				Przegrana!
-			</div>
-			<div class="napisRemisu" ng-show="statusKoncowy=='d'">
-				Remis!
-			</div>
-			<div class="napisWygranej" ng-show="statusKoncowy==gry[0].playerColor && statusKoncowy !='d'">
-				Wygrana!
-			</div>
+
+
 			
-		</div>
+
 	</div>
 
 	    <div style="margin-top:20px; max-height:700px; overflow: auto;" class="col-lg-6">
 		<div>
 			<h3 style="display:inline;">Przeciwnik: SI</h3>
-
-			<span ng-click="poddajSie()" class="btn btn-danger" style="float:right;">Poddaj się!</span>
-			<span ng-click="cofnjiRuch()" class="btn btn-success" style="float:right; margin-right:20px;">Cofnji ruch</span>
+			<span ng-click="nastepnyRuch()" class="btn btn-success" style="float:right;">Następny ruch</span>
+			<span ng-click="poprzedniRuch()" class="btn btn-success" style="float:right; margin-right:20px;">Poprzedni ruch</span>
 		</div>
+				<div style="color:red" ng-show="statusKoncowy!=gry[0].playerColor && statusKoncowy !='d' ">
+					Przegrana!
+				</div>
+				<div ng-show="statusKoncowy=='d'">
+					Remis!
+				</div>
+				<div style="color:green" ng-show="statusKoncowy==gry[0].playerColor && statusKoncowy !='d'">
+					Wygrana!
+				</div>
 			<div style="margin-top:40px;" class="list-group">
 				<div class="list-group-item list-group-item-info">Historia</div>
 				
