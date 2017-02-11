@@ -29,7 +29,10 @@ app.controller('aktualneGryCtrl', function ($scope, $cookies, $http, filesServic
 		function wczytajAktualneGry() {
 			filesService.wczytajDane("/allGames", function(response) {
                $scope.gry = response.data;
+
+
 				for (i = 0; i < $scope.gry.length; i++) {
+				   $scope.gry[i].startDate = new Date($scope.gry[i].startDate.match(/\d+/)[0] * 1);
 					$scope.gry[i].kolejnoscWierszy = [];
 					$scope.gry[i].zwiniete = true;
 					if ($scope.gry[i].playerColor == "b")

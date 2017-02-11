@@ -1,6 +1,6 @@
 .animate-show {
   opacity: 1;
-  border: 1px solid black;
+
   background: white;
   margin-bottom:0px;
   height:15%;
@@ -9,7 +9,7 @@
 }
 .dropDownMenu{
 
-  background: #ccc;
+  background: #fff;
   margin-top:0px;
 
     width: 18vw;
@@ -19,9 +19,28 @@
 .panel
 {
    width:100%;
-    border: 1px solid black;
+
     position:relative;
     display:inline-block;
 }
 
 
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+	border: 1px solid #ccc;
+	cursor: default;
+}
+.pagination a.active {
+    background-color: #003153;
+    color: white;
+
+}
+
+.pagination a:hover:not(.active) {background-color: #ccf;}

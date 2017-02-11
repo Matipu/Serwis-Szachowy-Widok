@@ -6,19 +6,22 @@
 <div  ng-controller="loginCtrl" class = "trescPodstrony">
 	
 
-	
-	<div class="col-xs-6">
-	<label for="ex1">E-mail:</label>
-	<input class="form-control" id="ex1" type="text">
-	</div>
-	<div class="col-xs-6">
-	<label for="ex2">Hasło:</label>
-	<input class="form-control" id="ex2" type="text">
-	</div>
-	
-	<div class="col-xs-12">
-		<div class="przycisk" ng-click="zalogujSie()">
-			Zaloguj się
+	<div class="col-xs-12" style="margin-top: 20px;">
+		<div class="col-xs-4">
+			<label for="ex1">E-mail:</label>
+			<input class="form-control" id="ex1" type="text">
 		</div>
+	</div>
+	<div class="col-xs-12" style="margin-top: 20px;">
+		<div class="col-xs-4">
+			<label for="ex2">Hasło:</label>
+			<input class="form-control" id="ex2" type="password">
+		</div>
+	</div>
+	<div class="col-xs-12" style="margin-top: 40px;margin-left: 20px;">
+		<span class="przycisk" ng-click="zalogujSie()" style = "color:fff;margin-left:10px; padding-left:40px;padding-right:40px; background-color : #003153;">
+			Zaloguj się
+		</span>
+		Nie masz konta? <a>Zarejestruj się!</a>
 	</div>
 </div>

@@ -2,9 +2,10 @@
 <link rel="stylesheet" type="text/css" href="stylSzachownicy1.css"/>
 <div ng-app="myApp" ng-controller="szachownicaCtrl">
 
-
-    <div class="col-lg-6">
-		<div style="margin-top:20px;"class = "pasekPrzewagi" >
+	
+    <div style="padding-top:20px;" class="col-lg-6">
+	Szanse na wygraną:
+		<div class = "pasekPrzewagi" >
 		
 			<span style="width: {{ przewagaBialychPx }}px" class = "przewagaBialych" >
 			</span>
@@ -12,8 +13,8 @@
 			<span style="width: {{ przewagaCzarnychPx }}px" class = "przewagaCzarnych" >
 			</span>
 
-			<span class = "napisPrzewagi">
-			{{ przewagaBialych }}:{{ przewagaCzarnych }}
+			<span class = "napisPrzewagi" style="padding-left:10%; font-size:16px;">
+			{{ przewagaBialych*100 }}%:{{ przewagaCzarnych*100 }}%
 			</span>
 			
 		</div>
